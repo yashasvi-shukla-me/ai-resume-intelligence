@@ -12,8 +12,6 @@ from backend.app.services.skill_extractor import extract_skills
 from backend.app.services.skill_gap_analyzer import analyze_skill_gap
 from backend.app.services.feedback_generator import generate_feedback
 
-print("### CORS VERSION 2 LOADED ###")
-
 
 class ResumeRequest(BaseModel):
     resume_text: str
@@ -25,12 +23,13 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://ai-resume-intelligence-1kzv.onrender.com"
+        "https://ai-resume-intelligence-1kzv.onrender.com",
     ],
-    allow_credentials=True,
+    allow_credentials=False,  # changed
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 
 
