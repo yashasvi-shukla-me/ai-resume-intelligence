@@ -3,6 +3,12 @@ import pdfplumber
 from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
 
+# self defined modules
+from backend.app.utils.text_cleaning import clean_text
+from backend.app.services.section_parser import extract_sections
+from backend.app.services.skill_extractor import extract_skills
+
+
 
 class ResumeRequest(BaseModel):
     resume_text: str
@@ -34,11 +40,16 @@ def upload_resume(file: UploadFile = File(...)):
             if text:
                 pages_text.append(text)
 
-    full_text = "\n".join(pages_text)
+    raw_text = "\n".join(pages_text)
+    cleaned_text = clean_text(raw_text)
+
+    sections = extract_sections(cleaned_text)
+    skills = extract_skills(sections, cleaned_text)
 
     return {
         "filename": file.filename,
-        "content_type": file.content_type,
-        "extracted_text_length": len(full_text),
-        "text_preview": full_text[:300]
+        "detected_sections": list(sections.keys()),
+        "extracted_skills": skills
     }
+
+
