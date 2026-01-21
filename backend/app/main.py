@@ -12,6 +12,7 @@ from backend.app.services.skill_extractor import extract_skills
 from backend.app.services.skill_gap_analyzer import analyze_skill_gap
 from backend.app.services.feedback_generator import generate_feedback
 
+print("### CORS VERSION 2 LOADED ###")
 
 
 class ResumeRequest(BaseModel):
