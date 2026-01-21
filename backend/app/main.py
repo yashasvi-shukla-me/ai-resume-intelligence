@@ -2,6 +2,8 @@ import io
 import pdfplumber
 from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # self defined modules
 from backend.app.utils.text_cleaning import clean_text
@@ -17,6 +19,18 @@ class ResumeRequest(BaseModel):
     job_description: str
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "https://ai-resume-intelligence-1kzv.onrender.com"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 
 @app.get("/")
