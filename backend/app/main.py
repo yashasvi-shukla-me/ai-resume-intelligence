@@ -23,12 +23,13 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://ai-resume-intelligence-1kzv.onrender.com",
+        "https://talentforge-one.vercel.app",
     ],
-    allow_credentials=False,  # changed
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 
 
