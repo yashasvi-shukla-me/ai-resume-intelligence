@@ -1,4 +1,4 @@
-const BASE_URL = "https://ai-resume-intelligence-1kzv.onrender.com";
+const BASE_URL = "/api";
 
 export async function atsMatch({ resumeText, jobDescription, jobRole }) {
   const response = await fetch(`${BASE_URL}/ats-match`, {
