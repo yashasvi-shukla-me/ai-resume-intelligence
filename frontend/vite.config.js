@@ -8,7 +8,6 @@ export default defineConfig({
       "/api": {
         target: "https://ai-resume-intelligence-1kzv.onrender.com",
         changeOrigin: true,
-        secure: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
